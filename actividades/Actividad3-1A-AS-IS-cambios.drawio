@@ -1,0 +1,273 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="3.1A AS-IS cambios" id="asis-cambios">
+    <mxGraphModel dx="1414" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="3220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontColor=#1A1A1A;" value="&lt;b style=&quot;font-size:24px&quot;&gt;Actividad 3 &amp;#183; Entregable 3.1 (A) &amp;#8212; AS-IS: lo que sale o cambia de responsabilidad&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:13px&quot;&gt;Recorte del dise&amp;#241;o actual del Reto 1. Solo aparecen los elementos afectados por Factory Method, Strategy y Observer.&lt;br&gt;&lt;b&gt;No se muestran las clases ni interfaces nuevas del TO-BE.&lt;/b&gt;&lt;br&gt;Todos los nombres y relaciones est&amp;#225;n verificados contra el c&amp;#243;digo de &lt;i&gt;codigo/farmacia-codigo-final&lt;/i&gt;.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="1120" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FBFBFB;strokeColor=#666666;verticalAlign=top;align=left;fontStyle=1;spacing=8;" value="Leyenda" vertex="1">
+          <mxGeometry height="250" width="860" x="1200" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1" parent="leyenda" style="rounded=0;html=1;fillColor=#F8CECC;strokeColor=#B85450;" value="" vertex="1">
+          <mxGeometry height="20" width="40" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1t" parent="leyenda" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b&gt;Rojo&lt;/b&gt; &amp;#8212; el elemento desaparece del dise&amp;#241;o" vertex="1">
+          <mxGeometry height="20" width="770" x="70" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lg2" parent="leyenda" style="rounded=0;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;" value="" vertex="1">
+          <mxGeometry height="20" width="40" x="20" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lg2t" parent="leyenda" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b&gt;Naranja&lt;/b&gt; &amp;#8212; permanece, pero cambia de responsabilidad" vertex="1">
+          <mxGeometry height="20" width="770" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lg3" parent="leyenda" style="rounded=0;html=1;fillColor=#FFFFFF;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="20" width="40" x="20" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lg3t" parent="leyenda" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b&gt;Negro&lt;/b&gt; &amp;#8212; contexto que se conserva sin cambios" vertex="1">
+          <mxGeometry height="20" width="770" x="70" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lg4" parent="leyenda" style="rounded=0;html=1;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="20" width="40" x="20" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lg4t" parent="leyenda" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b&gt;L&amp;#237;nea roja discontinua&lt;/b&gt; &amp;#8212; relaci&amp;#243;n que se elimina o se reemplaza" vertex="1">
+          <mxGeometry height="20" width="770" x="70" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lg5" parent="leyenda" style="rounded=0;html=1;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="20" width="40" x="20" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="lg5t" parent="leyenda" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" value="&lt;b&gt;L&amp;#237;nea negra continua&lt;/b&gt; &amp;#8212; relaci&amp;#243;n que se conserva. El s&amp;#237;mbolo &amp;#9662; dentro de cada caja dice qu&amp;#233; sale o qu&amp;#233; responsabilidad pierde." vertex="1">
+          <mxGeometry height="34" width="770" x="70" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="lg4l" edge="1" parent="leyenda" style="endArrow=open;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endFill=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="170" as="sourcePoint" />
+            <mxPoint x="60" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg5l" edge="1" parent="leyenda" style="endArrow=open;html=1;strokeColor=#000000;strokeWidth=2;endFill=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="210" as="sourcePoint" />
+            <mxPoint x="60" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bandaAt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#0B4A80;" value="&lt;b style=&quot;font-size:17px&quot;&gt;1 &amp;#183; FACTORY METHOD&lt;/b&gt;&lt;font style=&quot;font-size:13px&quot;&gt;&amp;#160;&amp;#8212; creaci&amp;#243;n de objetos (puntos de dolor P-01 y P-02)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="1200" x="70" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="A2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;i style=&quot;font-size:10px&quot;&gt;&amp;#171;interface&amp;#187;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IProductoFactory&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ Tipo: string&lt;br&gt;+ Crear(datos: string[]): Producto&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Se reutiliza (no se duplica) pero cambia: pierde el atributo Tipo, pasa a gen&amp;#233;rica IProductoFactory&amp;lt;T&amp;gt; y Crear() recibe un diccionario en vez de string[]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="130" width="340" x="70" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="A3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#D79B00;verticalAlign=top;align=left;spacing=6;" value="&lt;b style=&quot;font-size:11px&quot;&gt;F&amp;#225;bricas concretas de producto (7) &amp;#8212; las 7 implementan IProductoFactory&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Cada una repite el parseo de string[] (posiciones y conversiones) y construye su Proveedor: esa responsabilidad sale (P-02)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="210" width="1040" x="70" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="A3a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="MedicamentoCapsulaFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="110" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="A3b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="MedicamentoLiquidoFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="360" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="A3c" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="CosmeticoFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="610" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="A3d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="ComestibleFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="860" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="A3e" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="InyectologiaFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="110" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="A3f" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="CuracionBasicaFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="360" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="A3g" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="CambioVendajeFactory" vertex="1">
+          <mxGeometry height="60" width="230" x="610" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="A4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;RepositoryProducto&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- fabricas: List&amp;lt;IProductoFactory&amp;gt;&lt;br&gt;+ CargarDesdeArchivo(ruta): string&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Pierde la selecci&amp;#243;n de f&amp;#225;brica fabricas.First(f =&amp;gt; f.Tipo == tipo) y el tipo por defecto cuando faltan columnas (P-02)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="380" x="1200" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="A5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;ClienteRepository&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- clientes: List&amp;lt;Cliente&amp;gt;&lt;br&gt;+ Cargar(ruta): string&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Construye el Cliente dentro de Cargar(): esa creaci&amp;#243;n sale del repositorio hacia una f&amp;#225;brica de Cliente&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="340" x="80" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="A6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;RepositoryUsuario&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- usuarios: List&amp;lt;Usuario&amp;gt;&lt;br&gt;+ Cargar(ruta): string&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Construye el Usuario dentro de Cargar(): esa creaci&amp;#243;n sale del repositorio hacia una f&amp;#225;brica de Usuario&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="340" x="520" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="A7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFFFFF;strokeColor=#000000;spacing=6;" value="&lt;b&gt;Usuario&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;hereda de Persona&lt;/i&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ UserName: string&lt;br&gt;+ Password: string&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#444444&quot;&gt;&amp;#9662; La clase no cambia; solo cambia qui&amp;#233;n la construye&lt;/i&gt;" vertex="1">
+          <mxGeometry height="150" width="300" x="960" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="bandaBt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#4B2A80;" value="&lt;b style=&quot;font-size:17px&quot;&gt;2 &amp;#183; STRATEGY&lt;/b&gt;&lt;font style=&quot;font-size:13px&quot;&gt;&amp;#160;&amp;#8212; selecci&amp;#243;n de la regla de convenio (punto de dolor P-05)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="1200" x="70" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="B1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;ServicioDescuento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- convenios: List&amp;lt;IEntidadConvenio&amp;gt;&lt;br&gt;+ CalcularDescuento(precio, cliente): decimal&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Context de Strategy: se conserva, pero deja de buscar el convenio (FirstOrDefault + AplicaA) y pasa a delegar en la estrategia que trae el Cliente&lt;/i&gt;" vertex="1">
+          <mxGeometry height="180" width="380" x="560" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="B2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;i style=&quot;font-size:10px&quot;&gt;&amp;#171;interface&amp;#187;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IEntidadConvenio&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ TipoBeneficio: TipoBeneficio&lt;br&gt;+ CalcularBeneficio(precio): decimal&lt;br&gt;+ AplicaA(cliente): bool&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Abstracci&amp;#243;n de convenio de hoy, implementada solo por Convenio; en el TO-BE el papel de Strategy lo cumple IConvenio&lt;/i&gt;" vertex="1">
+          <mxGeometry height="180" width="340" x="1020" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="B3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#F8CECC;strokeColor=#B85450;spacing=6;" value="&lt;i style=&quot;font-size:10px&quot;&gt;&amp;#171;enum&amp;#187;&lt;/i&gt;&lt;br&gt;&lt;b&gt;TipoConvenio&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Empresa, Banco, Cooperativa,&lt;br&gt;Mutual, Universidad&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#A02A24&quot;&gt;&amp;#9662; Sale: sin clase base ni discriminador, ning&amp;#250;n colaborador lo consulta&lt;/i&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="1480" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="B4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;Cliente&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;hereda de Persona&lt;/i&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ Puntos: int&lt;br&gt;+ Convenio: Convenio?&lt;br&gt;+ AcumularPuntos(puntos): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size: 10px; color: rgb(154, 80, 0);&quot;&gt;▾ El campo Convenio apunta a la clase concreta; pasa a ser de tipo IConvenio&lt;/i&gt;" vertex="1">
+          <mxGeometry height="200" width="340" x="80" y="1560" as="geometry" />
+        </mxCell>
+        <mxCell id="B5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#F8CECC;strokeColor=#B85450;spacing=6;" value="&lt;b&gt;Convenio&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ NombreEntidad: string&lt;br&gt;+ TipoConvenio: TipoConvenio&lt;br&gt;+ ObtenerPorcentaje(): decimal&lt;br&gt;+ virtual CalcularBeneficio(precio): decimal&lt;br&gt;+ virtual AplicaA(cliente): bool&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#A02A24&quot;&gt;&amp;#9662; Sale: desaparece la clase. Su c&amp;#225;lculo, la lectura de convenios.txt y AplicaA() se reparten entre los convenios concretos (P-05)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="210" width="340" x="1020" y="1560" as="geometry" />
+        </mxCell>
+        <mxCell id="B6" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=16;align=left;verticalAlign=top;fillColor=#FFFFFF;strokeColor=#000000;spacing=6;" value="&lt;b&gt;convenios.txt&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Porcentaje por TipoConvenio&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#444444&quot;&gt;&amp;#9662; Se conserva, pero hoy se indexa por TipoConvenio, que sale: su clave queda por decidir en el TO-BE&lt;/i&gt;" vertex="1">
+          <mxGeometry height="140" width="300" x="1480" y="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="B8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#D79B00;verticalAlign=top;align=left;spacing=6;" value="&lt;b style=&quot;font-size:11px&quot;&gt;Convenios concretos (5) &amp;#8212; hoy subclases vac&amp;#237;as de Convenio&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Dejan de heredar de Convenio y de ser cascarones: pasan a implementar IConvenio, cada uno con su propia regla de descuento (P-05)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="210" width="860" x="980" y="1840" as="geometry" />
+        </mxCell>
+        <mxCell id="B8a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;ConvenioEmpresa&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo fija TipoConvenio.Empresa&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="1010" y="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="B8b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;ConvenioBanco&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo fija TipoConvenio.Banco&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="1290" y="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="B8c" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;ConvenioCooperativa&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo fija TipoConvenio.Cooperativa&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="1570" y="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="B8d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;ConvenioMutual&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo fija TipoConvenio.Mutual&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="1010" y="1980" as="geometry" />
+        </mxCell>
+        <mxCell id="B8e" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;ConvenioUniversidad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo fija TipoConvenio.Universidad&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="1290" y="1980" as="geometry" />
+        </mxCell>
+        <mxCell id="bandaCt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#1A6B45;" value="&lt;b style=&quot;font-size:17px&quot;&gt;3 &amp;#183; OBSERVER&lt;/b&gt;&lt;font style=&quot;font-size:13px&quot;&gt;&amp;#160;&amp;#8212; sistema de eventos (puntos de dolor P-08 y P-09)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="1200" x="70" y="2210" as="geometry" />
+        </mxCell>
+        <mxCell id="C2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;ServicioCliente&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ EventoPuntos: EventoPuntos&lt;br&gt;&amp;#160;&amp;#160;&lt;i&gt;(campo p&amp;#250;blico)&lt;/i&gt;&lt;br&gt;ctor: EventoPuntos = new EventoPuntos()&lt;br&gt;+ AcumularPuntos(cliente, puntos)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de crear y de exponer un evento concreto&lt;/i&gt;" vertex="1">
+          <mxGeometry height="200" width="320" x="120" y="2260" as="geometry" />
+        </mxCell>
+        <mxCell id="C3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;ServicioMovimiento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ EventoMovimiento: EventoMovimiento&lt;br&gt;&amp;#160;&amp;#160;&lt;i&gt;(campo p&amp;#250;blico)&lt;/i&gt;&lt;br&gt;ctor: EventoMovimiento = new EventoMovimiento()&lt;br&gt;+ RegistrarMovimiento(movimiento)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de crear y de exponer un evento concreto&lt;/i&gt;" vertex="1">
+          <mxGeometry height="200" width="320" x="510" y="2260" as="geometry" />
+        </mxCell>
+        <mxCell id="C4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFFFFF;strokeColor=#000000;spacing=6;" value="&lt;b&gt;ServicioProducto&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- eventos: List&amp;lt;IEvento&amp;gt;&lt;br&gt;+ ObtenerEventos(): List&amp;lt;IEvento&amp;gt;&lt;br&gt;+ Verificar(): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#444444&quot;&gt;&amp;#9662; Ya recibe la abstracci&amp;#243;n List&amp;lt;IEvento&amp;gt; por constructor: se conserva&lt;/i&gt;" vertex="1">
+          <mxGeometry height="200" width="360" x="900" y="2260" as="geometry" />
+        </mxCell>
+        <mxCell id="C9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFFFFF;strokeColor=#000000;spacing=6;" value="&lt;i style=&quot;font-size:10px&quot;&gt;&amp;#171;interface&amp;#187;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IEvento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ Disparar(entidad: object): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#444444&quot;&gt;&amp;#9662; Se conserva sin cambios. El tipado object (P-09) queda declarado como no intervenido&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="290" x="1700" y="2650" as="geometry" />
+        </mxCell>
+        <mxCell id="CF" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#D79B00;verticalAlign=top;align=left;spacing=6;" value="&lt;b style=&quot;font-size:11px&quot;&gt;Eventos concretos &amp;#8212; publicadores actuales; los 4 implementan IEvento&lt;/b&gt;" vertex="1">
+          <mxGeometry height="260" width="1550" x="80" y="2550" as="geometry" />
+        </mxCell>
+        <mxCell id="C5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;EventoPuntos&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ PuntosAcumulados: event&lt;br&gt;+ Disparar(cliente, puntos)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de ser creado y expuesto por ServicioCliente&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="120" y="2610" as="geometry" />
+        </mxCell>
+        <mxCell id="C6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;EventoMovimiento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ MovimientoRegistrado: event&lt;br&gt;+ Disparar(tipo)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de ser creado y expuesto por ServicioMovimiento&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="510" y="2610" as="geometry" />
+        </mxCell>
+        <mxCell id="C7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;EventoStockMinimo&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ StockMinimo: event&lt;br&gt;+ Disparar(producto)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de inyectarse como tipo concreto en VerificadorStock&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="900" y="2610" as="geometry" />
+        </mxCell>
+        <mxCell id="C8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;EventoVencimiento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ Vencimiento: event&lt;br&gt;+ Disparar(producto)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Deja de inyectarse como tipo concreto en VerificadorVencimiento&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="1290" y="2610" as="geometry" />
+        </mxCell>
+        <mxCell id="C12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;ServicioNotificacion&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;implementa IServicioNotificacion&lt;/i&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;+ EnviarNotificacion(mensaje): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Existe en el c&amp;#243;digo pero nadie la instancia ni la inyecta: hoy los observadores reales son las lambdas de Program.cs&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="380" x="80" y="2900" as="geometry" />
+        </mxCell>
+        <mxCell id="C10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;VerificadorStock&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- eventoStock: EventoStockMinimo&lt;br&gt;+ Verificar(producto): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Recibe el evento concreto por constructor&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="900" y="2890" as="geometry" />
+        </mxCell>
+        <mxCell id="C11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;VerificadorVencimiento&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;- eventoVencimiento: EventoVencimiento&lt;br&gt;+ Verificar(producto): void&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Recibe el evento concreto por constructor&lt;/i&gt;" vertex="1">
+          <mxGeometry height="170" width="320" x="1290" y="2890" as="geometry" />
+        </mxCell>
+        <mxCell id="eA2" edge="1" parent="1" source="A3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#000000;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.1635;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="A2" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187; (las 7)&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eA3" edge="1" parent="1" source="A4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.538;entryDx=0;entryDy=0;" target="A2" value="&lt;font style=&quot;font-size:10px&quot;&gt;fabricas: List&amp;lt;IProductoFactory&amp;gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1390" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eA4" edge="1" parent="1" source="A6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="A7" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;crea&amp;#187; new Usuario(datos[0..5])&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="115" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eA5" edge="1" parent="1" source="A5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="B4" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;crea&amp;#187; new Cliente(datos[0..3])&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eB1" edge="1" parent="1" source="B1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="B2" value="&lt;font style=&quot;font-size:10px&quot;&gt;busca con FirstOrDefault + AplicaA()&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-108" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eB2" edge="1" parent="1" source="B5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="B2" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187; &amp;#8212; se elimina con Convenio&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eB3" edge="1" parent="1" source="B5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.8235;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="B3" value="&lt;font style=&quot;font-size:10px&quot;&gt;compara TipoConvenio en AplicaA() y ObtenerPorcentaje() &amp;#8212; se elimina&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="1510" />
+              <mxPoint x="1630" y="1510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eB4" edge="1" parent="1" source="B5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.476;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="B6" value="&lt;font style=&quot;font-size:10px&quot;&gt;lee el porcentaje&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eB5" edge="1" parent="1" source="B4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.476;entryDx=0;entryDy=0;" target="B5" value="&lt;font style=&quot;font-size:10px&quot;&gt;hoy depende de Convenio (clase concreta) &amp;#8212; en el TO-BE pasar&amp;#225; a IConvenio&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eB6" edge="1" parent="1" source="B8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.2442;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="B5" value="&lt;font style=&quot;font-size:10px&quot;&gt;5 &amp;#215; herencia &amp;#8212; se elimina&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eC6" edge="1" parent="1" source="C10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="C7" value="&lt;font style=&quot;font-size:10px&quot;&gt;tipo concreto en el constructor&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eC7" edge="1" parent="1" source="C11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="C8" value="&lt;font style=&quot;font-size:10px&quot;&gt;tipo concreto en el constructor&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFE6CC;strokeColor=#D79B00;spacing=6;" value="&lt;b&gt;Program.cs&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;&amp;#171;punto de composici&amp;#243;n&amp;#187;&lt;/i&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:10px&quot;&gt;37-41 &amp;#183; new EventoStockMinimo(), new EventoVencimiento()&lt;br&gt;80-93 &amp;#183; List&amp;lt;IEvento&amp;gt; con los 4 eventos&lt;br&gt;97-140 &amp;#183; 4 suscripciones directas con lambdas an&amp;#243;nimas (+=)&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;i style=&quot;font-size:10px;color:#9A5000&quot;&gt;&amp;#9662; Lugar actual de las suscripciones. Pierde el registro directo: los observadores dejan de ser lambdas en el punto de composici&amp;#243;n (P-08)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="200" width="290" x="530" y="2890" as="geometry" />
+        </mxCell>
+        <mxCell id="eC1" edge="1" parent="1" source="C1" target="CF" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.384;entryY=1;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;suscribe 4 lambdas a los events concretos&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="eC2" edge="1" parent="1" source="C2" target="C5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.375;exitY=1;exitDx=0;exitDy=0;entryX=0.375;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;crea y expone&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="eC3" edge="1" parent="1" source="C3" target="C6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#B85450;strokeWidth=2;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.375;exitY=1;exitDx=0;exitDy=0;entryX=0.375;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;crea y expone&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="eC4" edge="1" parent="1" source="C4" target="C9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;endArrow=open;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.862;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;eventos: List&amp;lt;IEvento&amp;gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1950" y="2310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eC5a" edge="1" parent="1" source="C5" target="C9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#000000;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.625;exitY=0;exitDx=0;exitDy=0;entryX=0.207;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="2525" />
+              <mxPoint x="1760" y="2525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eC5b" edge="1" parent="1" source="C6" target="C9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#000000;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.625;exitY=0;exitDx=0;exitDy=0;entryX=0.414;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="2505" />
+              <mxPoint x="1820" y="2505" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eC5c" edge="1" parent="1" source="C7" target="C9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#000000;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.621;entryY=0;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="2485" />
+              <mxPoint x="1880" y="2485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eC5d" edge="1" parent="1" source="C8" target="C9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#000000;endArrow=block;endFill=0;labelBackgroundColor=#FFFFFF;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.265;entryDx=0;entryDy=0;" value="&lt;font style=&quot;font-size:10px&quot;&gt;&amp;#171;implements&amp;#187;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
