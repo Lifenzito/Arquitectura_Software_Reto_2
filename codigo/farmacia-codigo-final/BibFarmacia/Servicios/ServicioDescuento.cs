@@ -11,21 +11,12 @@ namespace BibFarmacia.Servicios
 {
     public class ServicioDescuento
     {
-        private readonly List<IEntidadConvenio> convenios;
-
-        public ServicioDescuento(
-            List<IEntidadConvenio> convenios)
-        {
-            this.convenios = convenios;
-        }
-
         public decimal CalcularDescuento(
             decimal precio,
             Cliente cliente)
         {
-            IEntidadConvenio? convenio =
-                convenios.FirstOrDefault(c =>
-                    c.AplicaA(cliente));
+            IConvenio? convenio =
+                cliente.Convenio;
 
             if (convenio == null)
             {

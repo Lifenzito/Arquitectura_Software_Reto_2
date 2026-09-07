@@ -12,10 +12,14 @@ namespace BibFarmacia.Repositorios
     public class ClienteRepository : IClienteRepository
     {
         private readonly List<Cliente> clientes;
+        private readonly IClienteFactory clienteFactory;
 
-        public ClienteRepository()
+        public ClienteRepository(
+            IClienteFactory clienteFactory)
         {
             clientes = new List<Cliente>();
+
+            this.clienteFactory = clienteFactory;
         }
 
         public void AgregarCliente(
@@ -55,7 +59,7 @@ namespace BibFarmacia.Repositorios
                         linea.Split(';');
 
                     Cliente cliente =
-                        new Cliente(
+                        clienteFactory.Crear(
                             datos[0],
                             datos[1],
                             datos[2],

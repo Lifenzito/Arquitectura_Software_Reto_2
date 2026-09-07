@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BibFarmacia.Convenios;
+using BibFarmacia.Interfaces;
 
 namespace BibFarmacia.Clases
 {
     public class Cliente : Persona
     {
         public int Puntos { get; set; }
-        public Convenio? Convenio { get; set; }
+        public IConvenio? Convenio { get; set; }
 
         public Cliente(string nombre, string cedula,
             string telefono, string correo)

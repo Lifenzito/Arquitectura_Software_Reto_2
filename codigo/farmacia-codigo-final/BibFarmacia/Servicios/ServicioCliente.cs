@@ -14,14 +14,15 @@ namespace BibFarmacia.Servicios
     {
         private readonly IClienteRepository clienteRepository;
 
-        public EventoPuntos EventoPuntos;
+        private readonly EventoPuntos eventoPuntos;
 
         public ServicioCliente(
-            IClienteRepository clienteRepository)
+            IClienteRepository clienteRepository,
+            EventoPuntos eventoPuntos)
         {
             this.clienteRepository = clienteRepository;
 
-            EventoPuntos = new EventoPuntos();
+            this.eventoPuntos = eventoPuntos;
         }
 
         public void AgregarCliente(
@@ -43,7 +44,7 @@ namespace BibFarmacia.Servicios
                 cliente,
                 puntos);
 
-            EventoPuntos.Disparar(
+            eventoPuntos.Disparar(
                 cliente.Nombre,
                 puntos);
         }

@@ -12,10 +12,14 @@ namespace BibFarmacia.Repositorios
     public class RepositoryUsuario : IRepositoryUsuario
     {
         private readonly List<Usuario> usuarios;
+        private readonly IUsuarioFactory usuarioFactory;
 
-        public RepositoryUsuario()
+        public RepositoryUsuario(
+            IUsuarioFactory usuarioFactory)
         {
             usuarios = new List<Usuario>();
+
+            this.usuarioFactory = usuarioFactory;
         }
 
         public string AgregarUsuario(
@@ -57,7 +61,7 @@ namespace BibFarmacia.Repositorios
                         linea.Split(';');
 
                     Usuario usuario =
-                        new Usuario(
+                        usuarioFactory.Crear(
                             datos[0],
                             datos[1],
                             datos[2],

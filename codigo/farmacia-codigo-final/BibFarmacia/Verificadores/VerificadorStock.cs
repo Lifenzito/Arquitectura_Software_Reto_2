@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BibFarmacia.Clases;
-using BibFarmacia.Eventos;
 using BibFarmacia.Interfaces;
 
 namespace BibFarmacia.Verificadores
 {
     public class VerificadorStock : IVerificador
     {
-        private readonly EventoStockMinimo eventoStock;
+        private readonly IEvento evento;
 
         public VerificadorStock(
-            EventoStockMinimo eventoStock)
+            IEvento evento)
         {
-            this.eventoStock = eventoStock;
+            this.evento = evento;
         }
 
         public void Verificar(
@@ -32,7 +31,7 @@ namespace BibFarmacia.Verificadores
             if (productoConStock.Stock <=
                 productoConStock.StockMinimo)
             {
-                eventoStock.Disparar(producto);
+                evento.Disparar(producto);
             }
         }
     }

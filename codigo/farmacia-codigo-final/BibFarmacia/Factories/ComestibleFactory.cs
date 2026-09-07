@@ -11,8 +11,6 @@ namespace BibFarmacia.Factories
 {
     public class ComestibleFactory : IProductoFactory
     {
-        public string Tipo => "comestible";
-
         public Comestible Crear(
             string nombre,
             decimal precio,
@@ -30,20 +28,21 @@ namespace BibFarmacia.Factories
                 proveedor);
         }
 
-        public Producto Crear(string[] datos)
+        public Producto Crear(
+            Dictionary<string, string> datos)
         {
             Marca marca =
                 new Marca(
-                    datos[5],
+                    datos["proveedor"],
                     "Medellin",
                     "4444444");
 
             return Crear(
-                datos[0],
-                decimal.Parse(datos[1]),
-                int.Parse(datos[2]),
-                int.Parse(datos[3]),
-                DateTime.Parse(datos[4]),
+                datos["nombre"],
+                decimal.Parse(datos["precio"]),
+                int.Parse(datos["stock"]),
+                int.Parse(datos["stockMinimo"]),
+                DateTime.Parse(datos["fechaVencimiento"]),
                 marca);
         }
     }

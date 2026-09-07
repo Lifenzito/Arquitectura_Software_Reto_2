@@ -10,26 +10,115 @@ using BibFarmacia.Verificadores;
 
 Console.Title = "Sistema Farmacia";
 
-List<IProductoFactory> fabricas =
-    new List<IProductoFactory>
+// Esquemas de columnas de productos.txt. Agregar un tipo nuevo solo exige su
+// clase, su fabrica y una linea de registro aqui: RepositoryProducto no cambia.
+string[] esquemaConStock =
+    new[]
     {
-        new MedicamentoCapsulaFactory(),
-        new MedicamentoLiquidoFactory(),
-        new CosmeticoFactory(),
-        new ComestibleFactory(),
-        new InyectologiaFactory(),
-        new CuracionBasicaFactory(),
-        new CambioVendajeFactory()
+        "nombre",
+        "precio",
+        "stock",
+        "stockMinimo",
+        "fechaVencimiento",
+        "proveedor"
+    };
+
+string[] esquemaMedicamentoLiquido =
+    new[]
+    {
+        "nombre",
+        "precio",
+        "stock",
+        "stockMinimo",
+        "fechaVencimiento",
+        "proveedor",
+        "materialEnvase",
+        "mililitros"
+    };
+
+string[] esquemaProcedimiento =
+    new[]
+    {
+        "nombre",
+        "precio",
+        "duracionMinutos",
+        "proveedor"
     };
 
 IRepositoryProducto repositoryProducto =
-    new RepositoryProducto(fabricas);
+    new RepositoryProducto();
+
+RegistrarProductos(repositoryProducto);
+
+void RegistrarProductos(
+    IRepositoryProducto repositorio)
+{
+    repositorio.RegistrarProducto(
+        "medicamento_capsula",
+        new MedicamentoCapsulaFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "medicamento_liquido",
+        new MedicamentoLiquidoFactory(),
+        esquemaMedicamentoLiquido);
+
+    repositorio.RegistrarProducto(
+        "cosmetico",
+        new CosmeticoFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "comestible",
+        new ComestibleFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "inyectologia",
+        new InyectologiaFactory(),
+        esquemaProcedimiento);
+
+    repositorio.RegistrarProducto(
+        "curacion_basica",
+        new CuracionBasicaFactory(),
+        esquemaProcedimiento);
+
+    repositorio.RegistrarProducto(
+        "cambio_vendaje",
+        new CambioVendajeFactory(),
+        esquemaProcedimiento);
+}
+
+// SC-2: los procedimientos entran por el mismo flujo de carga y por el mismo
+// tipo de repositorio, con su propio fixture para no alterar productos.txt.
+IRepositoryProducto repositoryProcedimiento =
+    new RepositoryProducto();
+
+repositoryProcedimiento.RegistrarProducto(
+    "inyectologia",
+    new InyectologiaFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.RegistrarProducto(
+    "curacion_basica",
+    new CuracionBasicaFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.RegistrarProducto(
+    "cambio_vendaje",
+    new CambioVendajeFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.CargarDesdeArchivo(
+    "productos-sc2.txt");
 
 IClienteRepository clienteRepository =
-    new ClienteRepository();
+    new ClienteRepository(
+        new ClienteFactory());
 
 IRepositoryUsuario repositoryUsuario =
-    new RepositoryUsuario();
+    new RepositoryUsuario(
+        new UsuarioFactory());
 
 IMovimientoRepository movimientoRepository =
     new MovimientoRepository();
@@ -39,6 +128,12 @@ EventoStockMinimo eventoStock =
 
 EventoVencimiento eventoVencimiento =
     new EventoVencimiento();
+
+EventoPuntos eventoPuntos =
+    new EventoPuntos();
+
+EventoMovimiento eventoMovimiento =
+    new EventoMovimiento();
 
 List<IVerificador> verificadores =
     new List<IVerificador>
@@ -50,7 +145,8 @@ List<IVerificador> verificadores =
 
 ServicioCliente servicioCliente =
     new ServicioCliente(
-        clienteRepository);
+        clienteRepository,
+        eventoPuntos);
 
 ServicioUsuario servicioUsuario =
     new ServicioUsuario(
@@ -58,32 +154,91 @@ ServicioUsuario servicioUsuario =
 
 ServicioMovimiento servicioMovimiento =
     new ServicioMovimiento(
-        movimientoRepository);
+        movimientoRepository,
+        eventoMovimiento);
 
 IServicioAutenticacion servicioAutenticacion =
     new ServicioAutenticacion(
         repositoryUsuario);
 
-List<IEntidadConvenio> convenios =
-    new List<IEntidadConvenio>
+// Los porcentajes son un parametro comercial: se leen una sola vez aqui,
+// en el Composition Root, y se inyectan a cada estrategia.
+Dictionary<string, decimal> porcentajesConvenio =
+    LeerPorcentajesConvenio("convenios.txt");
+
+IConvenio convenioUniversidad =
+    new ConvenioUniversidad(
+        "UPB",
+        Porcentaje("Universidad"));
+
+List<IConvenio> convenios =
+    new List<IConvenio>
     {
-        new ConvenioEmpresa("Sofka"),
-        new ConvenioBanco("Bancolombia"),
-        new ConvenioCooperativa("Coomeva"),
-        new ConvenioMutual("Mutual Ser"),
-        new ConvenioUniversidad("UPB")
+        new ConvenioEmpresa(
+            "Sofka",
+            Porcentaje("Empresa")),
+        new ConvenioBanco(
+            "Bancolombia",
+            Porcentaje("Banco")),
+        new ConvenioCooperativa(
+            "Coomeva",
+            Porcentaje("Cooperativa")),
+        new ConvenioMutual(
+            "Mutual Ser",
+            Porcentaje("Mutual")),
+        convenioUniversidad
     };
 
 ServicioDescuento servicioDescuento =
-    new ServicioDescuento(convenios);
+    new ServicioDescuento();
+
+decimal Porcentaje(string tipoEntidad)
+{
+    return porcentajesConvenio.TryGetValue(
+        tipoEntidad,
+        out decimal porcentaje)
+        ? porcentaje
+        : 0;
+}
+
+static Dictionary<string, decimal> LeerPorcentajesConvenio(
+    string ruta)
+{
+    Dictionary<string, decimal> porcentajes =
+        new Dictionary<string, decimal>();
+
+    try
+    {
+        if (!File.Exists(ruta))
+        {
+            return porcentajes;
+        }
+
+        foreach (string linea in
+            File.ReadAllLines(ruta))
+        {
+            string[] datos =
+                linea.Split(';');
+
+            porcentajes[datos[0]] =
+                decimal.Parse(datos[1]);
+        }
+
+        return porcentajes;
+    }
+    catch (Exception)
+    {
+        return porcentajes;
+    }
+}
 
 List<IEvento> eventos =
     new List<IEvento>
     {
         eventoStock,
         eventoVencimiento,
-        servicioCliente.EventoPuntos,
-        servicioMovimiento.EventoMovimiento
+        eventoPuntos,
+        eventoMovimiento
     };
 
 ServicioProducto servicioProducto =
@@ -94,50 +249,33 @@ ServicioProducto servicioProducto =
 
 // ================= EVENTOS =================
 
+IServicioNotificacion notificacionStock =
+    new ServicioNotificacion(
+        ConsoleColor.Red);
+
+IServicioNotificacion notificacionVencimiento =
+    new ServicioNotificacion(
+        ConsoleColor.Yellow);
+
+IServicioNotificacion notificacionPuntos =
+    new ServicioNotificacion(
+        ConsoleColor.Green);
+
+IServicioNotificacion notificacionMovimiento =
+    new ServicioNotificacion(
+        ConsoleColor.Cyan);
+
 eventoStock.StockMinimo +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Red;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
+    notificacionStock.EnviarNotificacion;
 
 eventoVencimiento.Vencimiento +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Yellow;
+    notificacionVencimiento.EnviarNotificacion;
 
-        Console.WriteLine(mensaje);
+eventoPuntos.PuntosAcumulados +=
+    notificacionPuntos.EnviarNotificacion;
 
-        Console.ResetColor();
-    };
-
-servicioCliente.EventoPuntos.PuntosAcumulados +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Green;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
-
-servicioMovimiento.EventoMovimiento
-    .MovimientoRegistrado +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Cyan;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
+eventoMovimiento.MovimientoRegistrado +=
+    notificacionMovimiento.EnviarNotificacion;
 
 // ================= CARGA TXT =================
 
@@ -440,40 +578,11 @@ while (opcion != 7)
 
             Console.ResetColor();
 
-            InyectologiaFactory inyectologiaFactory =
-                new InyectologiaFactory();
-
-            CuracionBasicaFactory curacionFactory =
-                new CuracionBasicaFactory();
-
-            CambioVendajeFactory vendajeFactory =
-                new CambioVendajeFactory();
-
-            Marca marcaServicios =
-                new Marca(
-                    "Servicios Farmacia",
-                    "Medellin",
-                    "4444444");
-
             List<Procedimiento> procedimientos =
-                new List<Procedimiento>
-                {
-                    inyectologiaFactory.Crear(
-                        "Inyectologia",
-                        15000,
-                        marcaServicios,
-                        10),
-                    curacionFactory.Crear(
-                        "CuracionBasica",
-                        25000,
-                        marcaServicios,
-                        20),
-                    vendajeFactory.Crear(
-                        "CambioVendaje",
-                        18000,
-                        marcaServicios,
-                        15)
-                };
+                repositoryProcedimiento
+                .ObtenerProductos()
+                .OfType<Procedimiento>()
+                .ToList();
 
             Console.WriteLine(
                 "\n--- Catálogo por tipo ---");
@@ -555,7 +664,7 @@ while (opcion != 7)
                 .First();
 
             clienteDemo.Convenio =
-                new ConvenioUniversidad("UPB");
+                convenioUniversidad;
 
             decimal descuento =
                 servicioDescuento
@@ -567,13 +676,122 @@ while (opcion != 7)
                 $"Cliente: {clienteDemo.Nombre} - " +
                 $"Convenio: " +
                 $"{clienteDemo.Convenio.NombreEntidad} " +
-                $"({clienteDemo.Convenio.TipoConvenio})");
+                $"({clienteDemo.Convenio.TipoEntidad})");
 
             Console.WriteLine(
                 $"Precio: {procedimientoDemo.Precio} - " +
                 $"Descuento: {descuento} - " +
                 $"Total: " +
                 $"{procedimientoDemo.Precio - descuento}");
+
+            break;
+
+        case 10:
+
+            // Demostracion de SC-2. Tampoco se lista en el menu.
+
+            Console.ForegroundColor =
+                ConsoleColor.Cyan;
+
+            Console.WriteLine(
+                "\n===== DEMOSTRACIÓN SC-2 =====");
+
+            Console.ResetColor();
+
+            Console.WriteLine(
+                "\n--- Procedimientos cargados desde " +
+                "productos-sc2.txt ---");
+
+            foreach (Producto procedimientoCargado in
+                repositoryProcedimiento
+                .ObtenerProductos())
+            {
+                Console.WriteLine(
+                    $"{procedimientoCargado.GetType().Name}\t" +
+                    $"{procedimientoCargado.Nombre}\t" +
+                    $"{procedimientoCargado.Precio}\t" +
+                    $"Proveedor: " +
+                    $"{procedimientoCargado.Proveedor.Nombre}\t" +
+                    $"Duración: " +
+                    $"{((Procedimiento)procedimientoCargado).DuracionMinutos} min");
+            }
+
+            Console.WriteLine(
+                "\n--- Venta de procedimiento cargado ---");
+
+            Producto procedimientoSc2 =
+                repositoryProcedimiento
+                .ObtenerProductos()
+                .First();
+
+            servicioMovimiento
+                .RegistrarMovimiento(
+                    new Movimiento(
+                        DateTime.Now,
+                        1,
+                        "Venta",
+                        procedimientoSc2));
+
+            Console.WriteLine(
+                $"{procedimientoSc2.Nombre} no " +
+                $"implementa IProductoConStock: " +
+                $"no hay stock que descontar");
+
+            break;
+
+        case 9:
+
+            // Demostracion de Strategy. Tampoco se lista en el menu para no
+            // alterar la salida observable de las opciones originales.
+
+            Console.ForegroundColor =
+                ConsoleColor.Cyan;
+
+            Console.WriteLine(
+                "\n===== DEMOSTRACIÓN CONVENIOS =====");
+
+            Console.ResetColor();
+
+            Cliente clienteConvenios =
+                servicioCliente
+                .ObtenerClientes()
+                .First();
+
+            decimal precioBase = 100000m;
+
+            foreach (IConvenio convenio in convenios)
+            {
+                clienteConvenios.Convenio =
+                    convenio;
+
+                decimal beneficio =
+                    servicioDescuento
+                    .CalcularDescuento(
+                        precioBase,
+                        clienteConvenios);
+
+                Console.WriteLine(
+                    $"{convenio.NombreEntidad} " +
+                    $"({convenio.TipoEntidad})\t" +
+                    $"{convenio.TipoBeneficio}\t" +
+                    $"Precio: {precioBase}\t" +
+                    $"Descuento: {beneficio}\t" +
+                    $"Total: {precioBase - beneficio}");
+            }
+
+            clienteConvenios.Convenio = null;
+
+            decimal sinConvenio =
+                servicioDescuento
+                .CalcularDescuento(
+                    precioBase,
+                    clienteConvenios);
+
+            Console.WriteLine(
+                $"Sin convenio\t" +
+                $"Precio: {precioBase}\t" +
+                $"Descuento: {sinConvenio}\t" +
+                $"Total: {precioBase - sinConvenio}");
 
             break;
 

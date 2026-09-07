@@ -12,8 +12,6 @@ namespace BibFarmacia.Factories
 {
     public class MedicamentoCapsulaFactory : IProductoFactory
     {
-        public string Tipo => "medicamento_capsula";
-
         public MedicamentoCapsula Crear(
             string nombre,
             decimal precio,
@@ -33,20 +31,21 @@ namespace BibFarmacia.Factories
                 tipoRelleno);
         }
 
-        public Producto Crear(string[] datos)
+        public Producto Crear(
+            Dictionary<string, string> datos)
         {
             Laboratorio laboratorio =
                 new Laboratorio(
-                    datos[5],
+                    datos["proveedor"],
                     "Medellin",
                     "4444444");
 
             return Crear(
-                datos[0],
-                decimal.Parse(datos[1]),
-                int.Parse(datos[2]),
-                int.Parse(datos[3]),
-                DateTime.Parse(datos[4]),
+                datos["nombre"],
+                decimal.Parse(datos["precio"]),
+                int.Parse(datos["stock"]),
+                int.Parse(datos["stockMinimo"]),
+                DateTime.Parse(datos["fechaVencimiento"]),
                 laboratorio,
                 TipoRelleno.Gel);
         }

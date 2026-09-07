@@ -14,15 +14,15 @@ namespace BibFarmacia.Servicios
     {
         private readonly IMovimientoRepository movimientoRepository;
 
-        public EventoMovimiento EventoMovimiento;
+        private readonly EventoMovimiento eventoMovimiento;
 
         public ServicioMovimiento(
-            IMovimientoRepository movimientoRepository)
+            IMovimientoRepository movimientoRepository,
+            EventoMovimiento eventoMovimiento)
         {
             this.movimientoRepository = movimientoRepository;
 
-            EventoMovimiento =
-                new EventoMovimiento();
+            this.eventoMovimiento = eventoMovimiento;
         }
 
         public void RegistrarMovimiento(
@@ -31,7 +31,7 @@ namespace BibFarmacia.Servicios
             movimientoRepository
                 .RegistrarMovimiento(movimiento);
 
-            EventoMovimiento.Disparar(
+            eventoMovimiento.Disparar(
                 movimiento.Tipo);
         }
 

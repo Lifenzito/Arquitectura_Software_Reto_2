@@ -10,8 +10,6 @@ namespace BibFarmacia.Interfaces
 {
     public interface IProductoFactory
     {
-        string Tipo { get; }
-
-        Producto Crear(string[] datos);
+        Producto Crear(Dictionary<string, string> datos);
     }
 }
