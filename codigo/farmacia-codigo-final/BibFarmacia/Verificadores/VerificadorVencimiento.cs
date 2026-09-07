@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BibFarmacia.Clases;
-using BibFarmacia.Eventos;
 using BibFarmacia.Interfaces;
 
 namespace BibFarmacia.Verificadores
 {
     public class VerificadorVencimiento : IVerificador
     {
-        private readonly EventoVencimiento eventoVencimiento;
+        private readonly IEvento evento;
 
         public VerificadorVencimiento(
-            EventoVencimiento eventoVencimiento)
+            IEvento evento)
         {
-            this.eventoVencimiento = eventoVencimiento;
+            this.evento = evento;
         }
 
         public void Verificar(
@@ -35,7 +34,7 @@ namespace BibFarmacia.Verificadores
 
             if (dias <= 30)
             {
-                eventoVencimiento.Disparar(producto);
+                evento.Disparar(producto);
             }
         }
     }

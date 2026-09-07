@@ -40,6 +40,12 @@ EventoStockMinimo eventoStock =
 EventoVencimiento eventoVencimiento =
     new EventoVencimiento();
 
+EventoPuntos eventoPuntos =
+    new EventoPuntos();
+
+EventoMovimiento eventoMovimiento =
+    new EventoMovimiento();
+
 List<IVerificador> verificadores =
     new List<IVerificador>
     {
@@ -50,7 +56,8 @@ List<IVerificador> verificadores =
 
 ServicioCliente servicioCliente =
     new ServicioCliente(
-        clienteRepository);
+        clienteRepository,
+        eventoPuntos);
 
 ServicioUsuario servicioUsuario =
     new ServicioUsuario(
@@ -58,7 +65,8 @@ ServicioUsuario servicioUsuario =
 
 ServicioMovimiento servicioMovimiento =
     new ServicioMovimiento(
-        movimientoRepository);
+        movimientoRepository,
+        eventoMovimiento);
 
 IServicioAutenticacion servicioAutenticacion =
     new ServicioAutenticacion(
@@ -82,8 +90,8 @@ List<IEvento> eventos =
     {
         eventoStock,
         eventoVencimiento,
-        servicioCliente.EventoPuntos,
-        servicioMovimiento.EventoMovimiento
+        eventoPuntos,
+        eventoMovimiento
     };
 
 ServicioProducto servicioProducto =
@@ -94,50 +102,33 @@ ServicioProducto servicioProducto =
 
 // ================= EVENTOS =================
 
+IServicioNotificacion notificacionStock =
+    new ServicioNotificacion(
+        ConsoleColor.Red);
+
+IServicioNotificacion notificacionVencimiento =
+    new ServicioNotificacion(
+        ConsoleColor.Yellow);
+
+IServicioNotificacion notificacionPuntos =
+    new ServicioNotificacion(
+        ConsoleColor.Green);
+
+IServicioNotificacion notificacionMovimiento =
+    new ServicioNotificacion(
+        ConsoleColor.Cyan);
+
 eventoStock.StockMinimo +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Red;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
+    notificacionStock.EnviarNotificacion;
 
 eventoVencimiento.Vencimiento +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Yellow;
+    notificacionVencimiento.EnviarNotificacion;
 
-        Console.WriteLine(mensaje);
+eventoPuntos.PuntosAcumulados +=
+    notificacionPuntos.EnviarNotificacion;
 
-        Console.ResetColor();
-    };
-
-servicioCliente.EventoPuntos.PuntosAcumulados +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Green;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
-
-servicioMovimiento.EventoMovimiento
-    .MovimientoRegistrado +=
-    mensaje =>
-    {
-        Console.ForegroundColor =
-            ConsoleColor.Cyan;
-
-        Console.WriteLine(mensaje);
-
-        Console.ResetColor();
-    };
+eventoMovimiento.MovimientoRegistrado +=
+    notificacionMovimiento.EnviarNotificacion;
 
 // ================= CARGA TXT =================
 
