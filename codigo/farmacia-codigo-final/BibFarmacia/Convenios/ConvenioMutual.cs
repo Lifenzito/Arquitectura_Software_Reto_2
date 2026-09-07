@@ -5,15 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BibFarmacia.Enum;
+using BibFarmacia.Interfaces;
 
 namespace BibFarmacia.Convenios
 {
-    public class ConvenioMutual : Convenio
+    public class ConvenioMutual : IConvenio
     {
-        public ConvenioMutual(string nombreEntidad)
-            : base(nombreEntidad,
-                  TipoConvenio.Mutual)
+        private readonly decimal porcentaje;
+
+        public string NombreEntidad { get; }
+
+        public string TipoEntidad => "Mutual";
+
+        public TipoBeneficio TipoBeneficio =>
+            TipoBeneficio.Descuento;
+
+        public ConvenioMutual(
+            string nombreEntidad,
+            decimal porcentaje)
         {
+            NombreEntidad = nombreEntidad;
+
+            this.porcentaje = porcentaje;
+        }
+
+        public decimal CalcularBeneficio(
+            decimal precio)
+        {
+            return precio * porcentaje / 100m;
         }
     }
 }

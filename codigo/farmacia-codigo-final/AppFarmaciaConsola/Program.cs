@@ -72,18 +72,76 @@ IServicioAutenticacion servicioAutenticacion =
     new ServicioAutenticacion(
         repositoryUsuario);
 
-List<IEntidadConvenio> convenios =
-    new List<IEntidadConvenio>
+// Los porcentajes son un parametro comercial: se leen una sola vez aqui,
+// en el Composition Root, y se inyectan a cada estrategia.
+Dictionary<string, decimal> porcentajesConvenio =
+    LeerPorcentajesConvenio("convenios.txt");
+
+IConvenio convenioUniversidad =
+    new ConvenioUniversidad(
+        "UPB",
+        Porcentaje("Universidad"));
+
+List<IConvenio> convenios =
+    new List<IConvenio>
     {
-        new ConvenioEmpresa("Sofka"),
-        new ConvenioBanco("Bancolombia"),
-        new ConvenioCooperativa("Coomeva"),
-        new ConvenioMutual("Mutual Ser"),
-        new ConvenioUniversidad("UPB")
+        new ConvenioEmpresa(
+            "Sofka",
+            Porcentaje("Empresa")),
+        new ConvenioBanco(
+            "Bancolombia",
+            Porcentaje("Banco")),
+        new ConvenioCooperativa(
+            "Coomeva",
+            Porcentaje("Cooperativa")),
+        new ConvenioMutual(
+            "Mutual Ser",
+            Porcentaje("Mutual")),
+        convenioUniversidad
     };
 
 ServicioDescuento servicioDescuento =
-    new ServicioDescuento(convenios);
+    new ServicioDescuento();
+
+decimal Porcentaje(string tipoEntidad)
+{
+    return porcentajesConvenio.TryGetValue(
+        tipoEntidad,
+        out decimal porcentaje)
+        ? porcentaje
+        : 0;
+}
+
+static Dictionary<string, decimal> LeerPorcentajesConvenio(
+    string ruta)
+{
+    Dictionary<string, decimal> porcentajes =
+        new Dictionary<string, decimal>();
+
+    try
+    {
+        if (!File.Exists(ruta))
+        {
+            return porcentajes;
+        }
+
+        foreach (string linea in
+            File.ReadAllLines(ruta))
+        {
+            string[] datos =
+                linea.Split(';');
+
+            porcentajes[datos[0]] =
+                decimal.Parse(datos[1]);
+        }
+
+        return porcentajes;
+    }
+    catch (Exception)
+    {
+        return porcentajes;
+    }
+}
 
 List<IEvento> eventos =
     new List<IEvento>
@@ -546,7 +604,7 @@ while (opcion != 7)
                 .First();
 
             clienteDemo.Convenio =
-                new ConvenioUniversidad("UPB");
+                convenioUniversidad;
 
             decimal descuento =
                 servicioDescuento
@@ -558,13 +616,69 @@ while (opcion != 7)
                 $"Cliente: {clienteDemo.Nombre} - " +
                 $"Convenio: " +
                 $"{clienteDemo.Convenio.NombreEntidad} " +
-                $"({clienteDemo.Convenio.TipoConvenio})");
+                $"({clienteDemo.Convenio.TipoEntidad})");
 
             Console.WriteLine(
                 $"Precio: {procedimientoDemo.Precio} - " +
                 $"Descuento: {descuento} - " +
                 $"Total: " +
                 $"{procedimientoDemo.Precio - descuento}");
+
+            break;
+
+        case 9:
+
+            // Demostracion de Strategy. Tampoco se lista en el menu para no
+            // alterar la salida observable de las opciones originales.
+
+            Console.ForegroundColor =
+                ConsoleColor.Cyan;
+
+            Console.WriteLine(
+                "\n===== DEMOSTRACIÓN CONVENIOS =====");
+
+            Console.ResetColor();
+
+            Cliente clienteConvenios =
+                servicioCliente
+                .ObtenerClientes()
+                .First();
+
+            decimal precioBase = 100000m;
+
+            foreach (IConvenio convenio in convenios)
+            {
+                clienteConvenios.Convenio =
+                    convenio;
+
+                decimal beneficio =
+                    servicioDescuento
+                    .CalcularDescuento(
+                        precioBase,
+                        clienteConvenios);
+
+                Console.WriteLine(
+                    $"{convenio.NombreEntidad} " +
+                    $"({convenio.TipoEntidad})\t" +
+                    $"{convenio.TipoBeneficio}\t" +
+                    $"Precio: {precioBase}\t" +
+                    $"Descuento: {beneficio}\t" +
+                    $"Total: {precioBase - beneficio}");
+            }
+
+            clienteConvenios.Convenio = null;
+
+            decimal sinConvenio =
+                servicioDescuento
+                .CalcularDescuento(
+                    precioBase,
+                    clienteConvenios);
+
+            Console.WriteLine(
+                $"Sin convenio\t" +
+                $"Precio: {precioBase}\t" +
+                $"Descuento: {sinConvenio}\t" +
+                $"Total: {precioBase - sinConvenio}");
 
             break;
 
