@@ -19,36 +19,23 @@ namespace BibFarmacia.Repositorios
 
         private readonly List<Producto> productos;
 
-        // Registro tipado: el discriminador selecciona a la vez la fabrica y
-        // el esquema ordenado de columnas con el que se arma el diccionario.
+        // El discriminador de la linea selecciona la fabrica.
         private readonly Dictionary<string, IProductoFactory> fabricas;
+
+        // Detalle interno de configuracion: como se llaman las columnas de
+        // cada tipo. No es una abstraccion del diseño, es el mapa de lectura
+        // del archivo posicional.
         private readonly Dictionary<string, string[]> esquemas;
 
-        public RepositoryProducto()
+        public RepositoryProducto(
+            Dictionary<string, IProductoFactory> fabricas,
+            Dictionary<string, string[]> esquemas)
         {
             productos = new List<Producto>();
 
-            fabricas =
-                new Dictionary<string, IProductoFactory>();
+            this.fabricas = fabricas;
 
-            esquemas =
-                new Dictionary<string, string[]>();
-        }
-
-        public void RegistrarProducto(
-            string tipo,
-            IProductoFactory fabrica,
-            string[] esquema)
-        {
-            if (fabricas.ContainsKey(tipo))
-            {
-                throw new ArgumentException(
-                    $"Tipo de producto ya registrado: {tipo}");
-            }
-
-            fabricas.Add(tipo, fabrica);
-
-            esquemas.Add(tipo, esquema);
+            this.esquemas = esquemas;
         }
 
         public List<Producto> ObtenerProductos()

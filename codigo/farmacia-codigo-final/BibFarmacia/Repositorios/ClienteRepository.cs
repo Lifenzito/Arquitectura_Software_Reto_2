@@ -60,10 +60,13 @@ namespace BibFarmacia.Repositorios
 
                     Cliente cliente =
                         clienteFactory.Crear(
-                            datos[0],
-                            datos[1],
-                            datos[2],
-                            datos[3]);
+                            new Dictionary<string, string>
+                            {
+                                ["nombre"] = datos[0],
+                                ["cedula"] = datos[1],
+                                ["telefono"] = datos[2],
+                                ["correo"] = datos[3]
+                            });
 
                     clientes.Add(cliente);
                 }

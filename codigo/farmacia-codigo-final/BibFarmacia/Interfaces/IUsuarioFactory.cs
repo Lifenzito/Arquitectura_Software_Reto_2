@@ -10,12 +10,6 @@ namespace BibFarmacia.Interfaces
 {
     public interface IUsuarioFactory
     {
-        Usuario Crear(
-            string nombre,
-            string cedula,
-            string telefono,
-            string correo,
-            string usuario,
-            string contrasena);
+        Usuario Crear(Dictionary<string, string> datos);
     }
 }

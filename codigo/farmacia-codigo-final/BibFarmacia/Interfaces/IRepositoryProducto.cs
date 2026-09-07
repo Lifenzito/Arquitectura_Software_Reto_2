@@ -10,11 +10,6 @@ namespace BibFarmacia.Interfaces
 {
     public interface IRepositoryProducto
     {
-        void RegistrarProducto(
-            string tipo,
-            IProductoFactory fabrica,
-            string[] esquema);
-
         List<Producto> ObtenerProductos();
 
         string AgregarProducto(Producto producto);

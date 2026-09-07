@@ -62,12 +62,15 @@ namespace BibFarmacia.Repositorios
 
                     Usuario usuario =
                         usuarioFactory.Crear(
-                            datos[0],
-                            datos[1],
-                            datos[2],
-                            datos[3],
-                            datos[4],
-                            datos[5]);
+                            new Dictionary<string, string>
+                            {
+                                ["nombre"] = datos[0],
+                                ["cedula"] = datos[1],
+                                ["telefono"] = datos[2],
+                                ["correo"] = datos[3],
+                                ["usuario"] = datos[4],
+                                ["contrasena"] = datos[5]
+                            });
 
                     usuarios.Add(usuario);
                 }
