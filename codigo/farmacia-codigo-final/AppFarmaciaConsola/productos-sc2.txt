@@ -1,0 +1,3 @@
+Inyectologia;15000;10;Servicios Farmacia;inyectologia
+CuracionBasica;25000;20;Servicios Farmacia;curacion_basica
+CambioVendaje;18000;15;Servicios Farmacia;cambio_vendaje

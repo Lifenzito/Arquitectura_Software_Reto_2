@@ -89,6 +89,29 @@ void RegistrarProductos(
         esquemaProcedimiento);
 }
 
+// SC-2: los procedimientos entran por el mismo flujo de carga y por el mismo
+// tipo de repositorio, con su propio fixture para no alterar productos.txt.
+IRepositoryProducto repositoryProcedimiento =
+    new RepositoryProducto();
+
+repositoryProcedimiento.RegistrarProducto(
+    "inyectologia",
+    new InyectologiaFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.RegistrarProducto(
+    "curacion_basica",
+    new CuracionBasicaFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.RegistrarProducto(
+    "cambio_vendaje",
+    new CambioVendajeFactory(),
+    esquemaProcedimiento);
+
+repositoryProcedimiento.CargarDesdeArchivo(
+    "productos-sc2.txt");
+
 IClienteRepository clienteRepository =
     new ClienteRepository(
         new ClienteFactory());
@@ -555,40 +578,11 @@ while (opcion != 7)
 
             Console.ResetColor();
 
-            InyectologiaFactory inyectologiaFactory =
-                new InyectologiaFactory();
-
-            CuracionBasicaFactory curacionFactory =
-                new CuracionBasicaFactory();
-
-            CambioVendajeFactory vendajeFactory =
-                new CambioVendajeFactory();
-
-            Marca marcaServicios =
-                new Marca(
-                    "Servicios Farmacia",
-                    "Medellin",
-                    "4444444");
-
             List<Procedimiento> procedimientos =
-                new List<Procedimiento>
-                {
-                    inyectologiaFactory.Crear(
-                        "Inyectologia",
-                        15000,
-                        marcaServicios,
-                        10),
-                    curacionFactory.Crear(
-                        "CuracionBasica",
-                        25000,
-                        marcaServicios,
-                        20),
-                    vendajeFactory.Crear(
-                        "CambioVendaje",
-                        18000,
-                        marcaServicios,
-                        15)
-                };
+                repositoryProcedimiento
+                .ObtenerProductos()
+                .OfType<Procedimiento>()
+                .ToList();
 
             Console.WriteLine(
                 "\n--- Catálogo por tipo ---");
@@ -689,6 +683,59 @@ while (opcion != 7)
                 $"Descuento: {descuento} - " +
                 $"Total: " +
                 $"{procedimientoDemo.Precio - descuento}");
+
+            break;
+
+        case 10:
+
+            // Demostracion de SC-2. Tampoco se lista en el menu.
+
+            Console.ForegroundColor =
+                ConsoleColor.Cyan;
+
+            Console.WriteLine(
+                "\n===== DEMOSTRACIÓN SC-2 =====");
+
+            Console.ResetColor();
+
+            Console.WriteLine(
+                "\n--- Procedimientos cargados desde " +
+                "productos-sc2.txt ---");
+
+            foreach (Producto procedimientoCargado in
+                repositoryProcedimiento
+                .ObtenerProductos())
+            {
+                Console.WriteLine(
+                    $"{procedimientoCargado.GetType().Name}\t" +
+                    $"{procedimientoCargado.Nombre}\t" +
+                    $"{procedimientoCargado.Precio}\t" +
+                    $"Proveedor: " +
+                    $"{procedimientoCargado.Proveedor.Nombre}\t" +
+                    $"Duración: " +
+                    $"{((Procedimiento)procedimientoCargado).DuracionMinutos} min");
+            }
+
+            Console.WriteLine(
+                "\n--- Venta de procedimiento cargado ---");
+
+            Producto procedimientoSc2 =
+                repositoryProcedimiento
+                .ObtenerProductos()
+                .First();
+
+            servicioMovimiento
+                .RegistrarMovimiento(
+                    new Movimiento(
+                        DateTime.Now,
+                        1,
+                        "Venta",
+                        procedimientoSc2));
+
+            Console.WriteLine(
+                $"{procedimientoSc2.Nombre} no " +
+                $"implementa IProductoConStock: " +
+                $"no hay stock que descontar");
 
             break;
 
