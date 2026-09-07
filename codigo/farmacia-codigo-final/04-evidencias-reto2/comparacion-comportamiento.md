@@ -48,6 +48,23 @@ las capturas son **idénticas byte a byte incluyendo los códigos de color**
 final de cada bloque). Los cuatro `ServicioNotificacion` con `ConsoleColor`
 por constructor reproducen exactamente lo que hacían las lambdas del AS-IS.
 
+## Segunda corrida: ajuste de fidelidad al TO-BE
+
+Tras alinear el código con el diagrama (se retiró `TipoEntidad` de `IConvenio`,
+`RepositoryProducto` volvió a recibir el `Dictionary<string, IProductoFactory>`
+por constructor sin `RegistrarProducto`, y `IClienteFactory`/`IUsuarioFactory`
+pasaron a `Crear(Dictionary<string,string>)`) se repitieron las dos tablas:
+
+- Compilación: 0 errores, 0 advertencias.
+- Casos heredados: **12 de 12 idénticos** al AS-IS.
+- Casos nuevos: los cuatro dan salida **byte a byte igual** a la de la primera
+  corrida del TO-BE; el ajuste no movió una sola línea.
+- Color bajo pseudo-terminal en los casos 01, 10 y 12: idéntico al AS-IS.
+
+El caso 12 vuelve a ser el crítico: sigue imprimiendo
+`Cliente: Carlos - Convenio: UPB (Universidad)`, ahora resuelto por el
+`ToString()` de `ConvenioUniversidad` en vez de una propiedad del contrato.
+
 ## Conclusión
 
 La refactorización a Factory Method, Strategy y Observer **preserva el

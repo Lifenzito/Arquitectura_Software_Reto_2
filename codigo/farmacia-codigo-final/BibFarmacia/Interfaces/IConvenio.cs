@@ -12,8 +12,6 @@ namespace BibFarmacia.Interfaces
     {
         string NombreEntidad { get; }
 
-        string TipoEntidad { get; }
-
         TipoBeneficio TipoBeneficio { get; }
 
         decimal CalcularBeneficio(decimal precio);

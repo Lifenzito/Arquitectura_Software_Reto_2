@@ -10,10 +10,6 @@ namespace BibFarmacia.Interfaces
 {
     public interface IClienteFactory
     {
-        Cliente Crear(
-            string nombre,
-            string cedula,
-            string telefono,
-            string correo);
+        Cliente Crear(Dictionary<string, string> datos);
     }
 }

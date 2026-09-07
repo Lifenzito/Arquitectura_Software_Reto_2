@@ -19,7 +19,7 @@ flujo normal de carga y puedan venderse.
 | Fábricas nuevas | 0 | 0 |
 | **Clases de biblioteca modificadas** | **2** (`RepositoryProducto` para admitir un esquema de 4 columnas + `Program.cs` con el bloque manual del `case 8`) | **0** |
 | Archivos de datos nuevos | 1 | 1 (`productos-sc2.txt`) |
-| Líneas de ensamblaje en el Composition Root | bloque de creación manual con `new` y fábricas locales | 3 líneas de `RegistrarProducto` + 1 de carga |
+| Líneas de ensamblaje en el Composition Root | bloque de creación manual con `new` y fábricas locales | 2 mapas de 3 entradas + 1 línea de construcción + 1 de carga |
 | Archivos del proyecto tocados | `RepositoryProducto.cs`, `Program.cs`, `productos.txt` o fixture | `Program.cs`, `productos-sc2.txt`, `.csproj` |
 
 ## Resultado

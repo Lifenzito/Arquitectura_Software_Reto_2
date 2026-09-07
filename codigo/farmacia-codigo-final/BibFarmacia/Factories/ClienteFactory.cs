@@ -12,16 +12,13 @@ namespace BibFarmacia.Factories
     public class ClienteFactory : IClienteFactory
     {
         public Cliente Crear(
-            string nombre,
-            string cedula,
-            string telefono,
-            string correo)
+            Dictionary<string, string> datos)
         {
             return new Cliente(
-                nombre,
-                cedula,
-                telefono,
-                correo);
+                datos["nombre"],
+                datos["cedula"],
+                datos["telefono"],
+                datos["correo"]);
         }
     }
 }

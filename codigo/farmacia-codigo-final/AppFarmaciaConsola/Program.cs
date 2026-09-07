@@ -45,69 +45,60 @@ string[] esquemaProcedimiento =
         "proveedor"
     };
 
+// Registro de fabricas por discriminador y su esquema de columnas. Agregar
+// un tipo nuevo solo exige su clase, su fabrica y una linea en cada mapa:
+// RepositoryProducto no cambia.
+Dictionary<string, IProductoFactory> fabricasProducto =
+    new Dictionary<string, IProductoFactory>
+    {
+        ["medicamento_capsula"] = new MedicamentoCapsulaFactory(),
+        ["medicamento_liquido"] = new MedicamentoLiquidoFactory(),
+        ["cosmetico"] = new CosmeticoFactory(),
+        ["comestible"] = new ComestibleFactory(),
+        ["inyectologia"] = new InyectologiaFactory(),
+        ["curacion_basica"] = new CuracionBasicaFactory(),
+        ["cambio_vendaje"] = new CambioVendajeFactory()
+    };
+
+Dictionary<string, string[]> esquemasProducto =
+    new Dictionary<string, string[]>
+    {
+        ["medicamento_capsula"] = esquemaConStock,
+        ["medicamento_liquido"] = esquemaMedicamentoLiquido,
+        ["cosmetico"] = esquemaConStock,
+        ["comestible"] = esquemaConStock,
+        ["inyectologia"] = esquemaProcedimiento,
+        ["curacion_basica"] = esquemaProcedimiento,
+        ["cambio_vendaje"] = esquemaProcedimiento
+    };
+
 IRepositoryProducto repositoryProducto =
-    new RepositoryProducto();
-
-RegistrarProductos(repositoryProducto);
-
-void RegistrarProductos(
-    IRepositoryProducto repositorio)
-{
-    repositorio.RegistrarProducto(
-        "medicamento_capsula",
-        new MedicamentoCapsulaFactory(),
-        esquemaConStock);
-
-    repositorio.RegistrarProducto(
-        "medicamento_liquido",
-        new MedicamentoLiquidoFactory(),
-        esquemaMedicamentoLiquido);
-
-    repositorio.RegistrarProducto(
-        "cosmetico",
-        new CosmeticoFactory(),
-        esquemaConStock);
-
-    repositorio.RegistrarProducto(
-        "comestible",
-        new ComestibleFactory(),
-        esquemaConStock);
-
-    repositorio.RegistrarProducto(
-        "inyectologia",
-        new InyectologiaFactory(),
-        esquemaProcedimiento);
-
-    repositorio.RegistrarProducto(
-        "curacion_basica",
-        new CuracionBasicaFactory(),
-        esquemaProcedimiento);
-
-    repositorio.RegistrarProducto(
-        "cambio_vendaje",
-        new CambioVendajeFactory(),
-        esquemaProcedimiento);
-}
+    new RepositoryProducto(
+        fabricasProducto,
+        esquemasProducto);
 
 // SC-2: los procedimientos entran por el mismo flujo de carga y por el mismo
 // tipo de repositorio, con su propio fixture para no alterar productos.txt.
+Dictionary<string, IProductoFactory> fabricasProcedimiento =
+    new Dictionary<string, IProductoFactory>
+    {
+        ["inyectologia"] = new InyectologiaFactory(),
+        ["curacion_basica"] = new CuracionBasicaFactory(),
+        ["cambio_vendaje"] = new CambioVendajeFactory()
+    };
+
+Dictionary<string, string[]> esquemasProcedimiento =
+    new Dictionary<string, string[]>
+    {
+        ["inyectologia"] = esquemaProcedimiento,
+        ["curacion_basica"] = esquemaProcedimiento,
+        ["cambio_vendaje"] = esquemaProcedimiento
+    };
+
 IRepositoryProducto repositoryProcedimiento =
-    new RepositoryProducto();
-
-repositoryProcedimiento.RegistrarProducto(
-    "inyectologia",
-    new InyectologiaFactory(),
-    esquemaProcedimiento);
-
-repositoryProcedimiento.RegistrarProducto(
-    "curacion_basica",
-    new CuracionBasicaFactory(),
-    esquemaProcedimiento);
-
-repositoryProcedimiento.RegistrarProducto(
-    "cambio_vendaje",
-    new CambioVendajeFactory(),
-    esquemaProcedimiento);
+    new RepositoryProducto(
+        fabricasProcedimiento,
+        esquemasProcedimiento);
 
 repositoryProcedimiento.CargarDesdeArchivo(
     "productos-sc2.txt");
@@ -674,9 +665,7 @@ while (opcion != 7)
 
             Console.WriteLine(
                 $"Cliente: {clienteDemo.Nombre} - " +
-                $"Convenio: " +
-                $"{clienteDemo.Convenio.NombreEntidad} " +
-                $"({clienteDemo.Convenio.TipoEntidad})");
+                $"Convenio: {clienteDemo.Convenio}");
 
             Console.WriteLine(
                 $"Precio: {procedimientoDemo.Precio} - " +
@@ -771,8 +760,7 @@ while (opcion != 7)
                         clienteConvenios);
 
                 Console.WriteLine(
-                    $"{convenio.NombreEntidad} " +
-                    $"({convenio.TipoEntidad})\t" +
+                    $"{convenio}\t" +
                     $"{convenio.TipoBeneficio}\t" +
                     $"Precio: {precioBase}\t" +
                     $"Descuento: {beneficio}\t" +

@@ -15,8 +15,6 @@ namespace BibFarmacia.Convenios
 
         public string NombreEntidad { get; }
 
-        public string TipoEntidad => "Universidad";
-
         public TipoBeneficio TipoBeneficio =>
             TipoBeneficio.Descuento;
 
@@ -33,6 +31,12 @@ namespace BibFarmacia.Convenios
             decimal precio)
         {
             return precio * porcentaje / 100m;
+        }
+
+        // Etiqueta con la que el convenio se identifica en pantalla.
+        public override string ToString()
+        {
+            return $"{NombreEntidad} (Universidad)";
         }
     }
 }

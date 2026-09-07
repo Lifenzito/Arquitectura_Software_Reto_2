@@ -12,20 +12,15 @@ namespace BibFarmacia.Factories
     public class UsuarioFactory : IUsuarioFactory
     {
         public Usuario Crear(
-            string nombre,
-            string cedula,
-            string telefono,
-            string correo,
-            string usuario,
-            string contrasena)
+            Dictionary<string, string> datos)
         {
             return new Usuario(
-                nombre,
-                cedula,
-                telefono,
-                correo,
-                usuario,
-                contrasena);
+                datos["nombre"],
+                datos["cedula"],
+                datos["telefono"],
+                datos["correo"],
+                datos["usuario"],
+                datos["contrasena"]);
         }
     }
 }
