@@ -11,8 +11,6 @@ namespace BibFarmacia.Factories
 {
     public class CambioVendajeFactory : IProductoFactory
     {
-        public string Tipo => "cambio_vendaje";
-
         public CambioVendaje Crear(
             string nombre,
             decimal precio,
@@ -26,19 +24,20 @@ namespace BibFarmacia.Factories
                 duracionMinutos);
         }
 
-        public Producto Crear(string[] datos)
+        public Producto Crear(
+            Dictionary<string, string> datos)
         {
             Marca marca =
                 new Marca(
-                    datos[3],
+                    datos["proveedor"],
                     "Medellin",
                     "4444444");
 
             return Crear(
-                datos[0],
-                decimal.Parse(datos[1]),
+                datos["nombre"],
+                decimal.Parse(datos["precio"]),
                 marca,
-                int.Parse(datos[2]));
+                int.Parse(datos["duracionMinutos"]));
         }
     }
 }

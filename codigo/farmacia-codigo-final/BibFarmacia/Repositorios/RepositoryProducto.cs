@@ -18,14 +18,37 @@ namespace BibFarmacia.Repositorios
         private const string TipoPorDefecto = "medicamento_capsula";
 
         private readonly List<Producto> productos;
-        private readonly List<IProductoFactory> fabricas;
 
-        public RepositoryProducto(
-            List<IProductoFactory> fabricas)
+        // Registro tipado: el discriminador selecciona a la vez la fabrica y
+        // el esquema ordenado de columnas con el que se arma el diccionario.
+        private readonly Dictionary<string, IProductoFactory> fabricas;
+        private readonly Dictionary<string, string[]> esquemas;
+
+        public RepositoryProducto()
         {
             productos = new List<Producto>();
 
-            this.fabricas = fabricas;
+            fabricas =
+                new Dictionary<string, IProductoFactory>();
+
+            esquemas =
+                new Dictionary<string, string[]>();
+        }
+
+        public void RegistrarProducto(
+            string tipo,
+            IProductoFactory fabrica,
+            string[] esquema)
+        {
+            if (fabricas.ContainsKey(tipo))
+            {
+                throw new ArgumentException(
+                    $"Tipo de producto ya registrado: {tipo}");
+            }
+
+            fabricas.Add(tipo, fabrica);
+
+            esquemas.Add(tipo, esquema);
         }
 
         public List<Producto> ObtenerProductos()
@@ -72,11 +95,25 @@ namespace BibFarmacia.Repositorios
                             : datos[datos.Length - 1];
 
                     IProductoFactory fabrica =
-                        fabricas.First(f =>
-                            f.Tipo == tipo);
+                        fabricas[tipo];
+
+                    string[] esquema =
+                        esquemas[tipo];
+
+                    Dictionary<string, string> valores =
+                        new Dictionary<string, string>();
+
+                    for (int columna = 0;
+                        columna < esquema.Length &&
+                        columna < datos.Length;
+                        columna++)
+                    {
+                        valores[esquema[columna]] =
+                            datos[columna];
+                    }
 
                     productos.Add(
-                        fabrica.Crear(datos));
+                        fabrica.Crear(valores));
                 }
 
                 return "Productos cargados";

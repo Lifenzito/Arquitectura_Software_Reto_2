@@ -10,26 +10,92 @@ using BibFarmacia.Verificadores;
 
 Console.Title = "Sistema Farmacia";
 
-List<IProductoFactory> fabricas =
-    new List<IProductoFactory>
+// Esquemas de columnas de productos.txt. Agregar un tipo nuevo solo exige su
+// clase, su fabrica y una linea de registro aqui: RepositoryProducto no cambia.
+string[] esquemaConStock =
+    new[]
     {
-        new MedicamentoCapsulaFactory(),
-        new MedicamentoLiquidoFactory(),
-        new CosmeticoFactory(),
-        new ComestibleFactory(),
-        new InyectologiaFactory(),
-        new CuracionBasicaFactory(),
-        new CambioVendajeFactory()
+        "nombre",
+        "precio",
+        "stock",
+        "stockMinimo",
+        "fechaVencimiento",
+        "proveedor"
+    };
+
+string[] esquemaMedicamentoLiquido =
+    new[]
+    {
+        "nombre",
+        "precio",
+        "stock",
+        "stockMinimo",
+        "fechaVencimiento",
+        "proveedor",
+        "materialEnvase",
+        "mililitros"
+    };
+
+string[] esquemaProcedimiento =
+    new[]
+    {
+        "nombre",
+        "precio",
+        "duracionMinutos",
+        "proveedor"
     };
 
 IRepositoryProducto repositoryProducto =
-    new RepositoryProducto(fabricas);
+    new RepositoryProducto();
+
+RegistrarProductos(repositoryProducto);
+
+void RegistrarProductos(
+    IRepositoryProducto repositorio)
+{
+    repositorio.RegistrarProducto(
+        "medicamento_capsula",
+        new MedicamentoCapsulaFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "medicamento_liquido",
+        new MedicamentoLiquidoFactory(),
+        esquemaMedicamentoLiquido);
+
+    repositorio.RegistrarProducto(
+        "cosmetico",
+        new CosmeticoFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "comestible",
+        new ComestibleFactory(),
+        esquemaConStock);
+
+    repositorio.RegistrarProducto(
+        "inyectologia",
+        new InyectologiaFactory(),
+        esquemaProcedimiento);
+
+    repositorio.RegistrarProducto(
+        "curacion_basica",
+        new CuracionBasicaFactory(),
+        esquemaProcedimiento);
+
+    repositorio.RegistrarProducto(
+        "cambio_vendaje",
+        new CambioVendajeFactory(),
+        esquemaProcedimiento);
+}
 
 IClienteRepository clienteRepository =
-    new ClienteRepository();
+    new ClienteRepository(
+        new ClienteFactory());
 
 IRepositoryUsuario repositoryUsuario =
-    new RepositoryUsuario();
+    new RepositoryUsuario(
+        new UsuarioFactory());
 
 IMovimientoRepository movimientoRepository =
     new MovimientoRepository();

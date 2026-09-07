@@ -8,8 +8,12 @@ using BibFarmacia.Clases;
 
 namespace BibFarmacia.Interfaces
 {
-    public interface IProductoFactory
+    public interface IClienteFactory
     {
-        Producto Crear(Dictionary<string, string> datos);
+        Cliente Crear(
+            string nombre,
+            string cedula,
+            string telefono,
+            string correo);
     }
 }
