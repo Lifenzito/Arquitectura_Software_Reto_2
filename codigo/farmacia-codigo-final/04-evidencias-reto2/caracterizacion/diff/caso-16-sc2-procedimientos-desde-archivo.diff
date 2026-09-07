@@ -1,0 +1,20 @@
+--- as-is/caso-16-sc2-procedimientos-desde-archivo.out	2026-09-07 01:03:54.238897332 +0000
++++ tobe/caso-16-sc2-procedimientos-desde-archivo.out	2026-09-07 01:06:49.030905667 +0000
+@@ -34,7 +34,16 @@
+ 7. Salir
+ 
+ Seleccione opción: 
+-Opción inválida
++===== DEMOSTRACIÓN SC-2 =====
++
++--- Procedimientos cargados desde productos-sc2.txt ---
++Inyectologia	Inyectologia	15000	Proveedor: Servicios Farmacia	Duración: 10 min
++CuracionBasica	CuracionBasica	25000	Proveedor: Servicios Farmacia	Duración: 20 min
++CambioVendaje	CambioVendaje	18000	Proveedor: Servicios Farmacia	Duración: 15 min
++
++--- Venta de procedimiento cargado ---
++Movimiento registrado: Venta
++Inyectologia no implementa IProductoConStock: no hay stock que descontar
+ 
+ ==============================
+       SISTEMA FARMACIA

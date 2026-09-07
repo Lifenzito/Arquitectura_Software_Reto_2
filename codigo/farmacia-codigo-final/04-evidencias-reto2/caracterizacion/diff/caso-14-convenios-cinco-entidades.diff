@@ -1,0 +1,17 @@
+--- as-is/caso-14-convenios-cinco-entidades.out	2026-09-07 01:03:54.102897326 +0000
++++ tobe/caso-14-convenios-cinco-entidades.out	2026-09-07 01:06:48.898905661 +0000
+@@ -34,7 +34,13 @@
+ 7. Salir
+ 
+ Seleccione opción: 
+-Opción inválida
++===== DEMOSTRACIÓN CONVENIOS =====
++Sofka (Empresa)	Descuento	Precio: 100000	Descuento: 10000	Total: 90000
++Bancolombia (Banco)	Descuento	Precio: 100000	Descuento: 8000	Total: 92000
++Coomeva (Cooperativa)	Descuento	Precio: 100000	Descuento: 12000	Total: 88000
++Mutual Ser (Mutual)	Descuento	Precio: 100000	Descuento: 7000	Total: 93000
++UPB (Universidad)	Descuento	Precio: 100000	Descuento: 15000	Total: 85000
++Sin convenio	Precio: 100000	Descuento: 0	Total: 100000
+ 
+ ==============================
+       SISTEMA FARMACIA
